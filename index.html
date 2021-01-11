@@ -46,7 +46,9 @@
                 var carregarOperadoras = function () {
                     $http.get("http://localhost:3412/operadoras").then(function (dados) {
                         $scope.operadoras = dados.data;
-                    });
+                    }).catch(function(){
+                        $scope.messagemErro = "Erro ao buscar lista de operadoras.";
+                    });;
                 };
 
                 $scope.adicionarContato = function(contato){
@@ -55,7 +57,9 @@
                         delete $scope.contato;
                         $scope.contatoForm.$setPristine();
                         carregarContatos();
-                    });
+                    }).catch(function(){
+                        $scope.messagemErro = "Falha ao adicionar contato.";
+                    });;;
                 };
 
                 $scope.apagarContatos = function(contatos){
